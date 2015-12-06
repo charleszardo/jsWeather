@@ -3,11 +3,10 @@ if ("geolocation" in navigator) {
 	    loadWeather(position.coords.latitude+','+position.coords.longitude);
 			//load weather using your lat/lng coordinates
 	  });
-} else {
-  loadWeather('Boston, MA', '');
 }
 	
-$(document).ready(function() {	
+$(document).ready(function() {
+	loadWeather('Boston, MA', '');
 });
 
 function loadWeather(location, woeid) {
@@ -17,7 +16,8 @@ function loadWeather(location, woeid) {
     unit: 'f',
     success: function(weather) {
       html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<ul><li><img src="'+weather.thumbnail+'"></li>';
+			html += '<li>'+weather.city+', '+weather.region+'</li>';
       html += '<li class="currently">'+weather.currently+'</li>';
       html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';  
       
