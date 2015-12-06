@@ -1,8 +1,8 @@
-var fTemp = null;
-var cTemp = null;
+var fTemp;
+var cTemp;
+var fahrenheit = true;
 
 $(document).ready(function() {
-	var fahrenheit = true;
 	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
