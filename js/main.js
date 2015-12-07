@@ -7,7 +7,9 @@ $(document).ready(function() {
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 		    loadWeather(position.coords.latitude+','+position.coords.longitude);
-		  });
+		  }, function(error) { 
+				loadWeather('Boston, MA', '');
+		});
 	} else {
 		loadWeather('Boston, MA', '');
 	}
