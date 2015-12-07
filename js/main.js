@@ -36,12 +36,13 @@ function loadWeather(location, woeid) {
       thumb = '<img src="'+weather.thumbnail+'">';
 			loc = weather.city+', '+weather.region;
       conditions = weather.currently;
-      html = '<li>'+weather.alt.temp+'&deg;C</li></ul>';  
+      wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
       
 			$("#temp").html(temp);
 			$("#thumb").html(thumb);
 			$("#loc").html(loc);
 			$("#weather").html(conditions);
+			$('#wind').html(wind);
     },
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
