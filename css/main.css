@@ -4,6 +4,20 @@ body {
 	text-align: center;
 }
 
+#switch {
+	color: inherit;
+	text-decoration: inherit;
+	font-size: 0.7em;
+}
+
+#top-row {
+  font-size: 1.8em;
+  font-weight: bold;
+  padding-bottom: 1%;
+  color: #ffffff;
+  text-shadow: 0 0 0.2em #333;
+}
+
 .row {
 	display: block;
 	margin: auto 0;
