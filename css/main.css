@@ -1,13 +1,11 @@
 body {
-	background: red;
+	background: url("http://static.pexels.com/wp-content/uploads/2014/06/clouds-colorful-colourful-1029.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-size: cover;
 	font-family: 'Lato', sans-serif;
 	text-align: center;
-}
-
-#switch {
-	color: inherit;
-	text-decoration: inherit;
-	font-size: 0.7em;
 }
 
 #top-row {
@@ -18,6 +16,16 @@ body {
   text-shadow: 0 0 0.2em #333;
 }
 
+#switch {
+	color: inherit;
+	text-decoration: inherit;
+	font-size: 0.7em;
+}
+
+#switch-row {
+	margin: -40px 0 20px 0;
+}
+
 .row {
 	display: block;
 	margin: auto 0;
@@ -25,7 +33,6 @@ body {
 
 .item {
 	display: inline-block;
-
 }
 
 .bottom {
