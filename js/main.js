@@ -15,6 +15,10 @@ $(document).ready(function() {
 	}
 	
 	$("#switch").click(function() {
+		if (!fTemp){
+			// temperature hasn't loaded yet so disable swithing
+			return;
+		}
 		if (fahrenheit) {
 			temp = '<h2>'+cTemp+'&deg;C</h2>';
 		} else {
