@@ -1,9 +1,8 @@
 $(document).ready(function() {
-	var fTemp;
-	var cTemp;
-	var fahrenheit = true;
-	var coords = [null, null];
-	
+	var fTemp, cTemp,
+			fahrenheit = true,
+			coords = [null, null]
+
 	function loadWeather(location, woeid) {
 	  $.simpleWeather({
 	    location: location,
@@ -31,12 +30,20 @@ $(document).ready(function() {
 	  });
 	}
 	
+	function setBackground(photos) {
+		if (!photos.length) {
+			photos = ["http://static.pexels.com/wp-content/uploads/2014/06/clouds-colorful-colourful-1029.jpg"];
+		}
+		var photo = photos[Math.floor(Math.random()*photos.length)];
+		$('body').css('background-image', 'url(' + photo + ')');
+	}
+	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			coords = [position.coords.longitude, position.coords.latitude];
 		    loadWeather(position.coords.latitude+','+position.coords.longitude);
 				
-				var diff = 0.002,
+				var diff = 0.01,
 						minx = coords[0] - diff,
 						miny = coords[1] - diff,
 						maxx = coords[0] + diff,
@@ -46,14 +53,18 @@ $(document).ready(function() {
 											"&miny=" + miny +
 											"&maxx=" + maxx +
 											"&maxy=" + maxy +
-											"&size=medium&mapfilter=true";
+											"&size=original&mapfilter=true";
 											
 				$.ajax({
 					type: "GET",
 					dataType: "jsonp",
 					url: testUrl,
 					success: function(data) {
-						console.log(data.photos);
+						var photos = [];
+						data.photos.forEach(function(photoObj) {
+							photos.push(photoObj.photo_file_url);
+						});
+						setBackground(photos);
 					}
 				})
 				
