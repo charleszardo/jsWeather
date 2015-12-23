@@ -17,6 +17,7 @@ $(document).ready(function() {
 										'<div id="wind" class="item bottom"></div>' +
 									'</div>';
 		
+		$("#loading").remove();
 		$("body").append(bodyString);
 	}
 
@@ -109,7 +110,5 @@ $(document).ready(function() {
 		fahrenheit = !fahrenheit;
 		$("#temp").html(temp);
 	})
-	
-	
 });
 

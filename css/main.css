@@ -26,6 +26,12 @@ body {
 	margin: -40px 0 20px 0;
 }
 
+#loading {
+	margin: 20px auto;
+	width: 2%;
+	height: 2%;
+}
+
 .row {
 	display: block;
 	margin: auto 0;
