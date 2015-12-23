@@ -2,6 +2,23 @@ $(document).ready(function() {
 	var fTemp, cTemp,
 			fahrenheit = true,
 			coords = [null, null]
+	
+	function createBody() {
+		bodyString = 	'<div id="top-row" class="row">' +
+										'<div id="thumb" class="item"></div>' +
+										'<div id="temp" class="item"></div>' +
+									'</div>' +
+									'<div id="switch-row" class="row">' +
+											'<a href="#" id="switch">switch units</a>' + 
+									'</div>' +
+									'<div id="bottom-row" class="row">' +
+										'<div id="loc" class="item bottom"></div>' +
+										'<div id="weather" class="item bottom"></div>' +
+										'<div id="wind" class="item bottom"></div>' +
+									'</div>';
+		
+		$("body").append(bodyString);
+	}
 
 	function loadWeather(location, woeid) {
 	  $.simpleWeather({
@@ -17,7 +34,8 @@ $(document).ready(function() {
 				loc = weather.city+', '+weather.region;
 	      conditions = weather.currently;
 	      wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
-      
+      	
+				createBody()
 				$("#temp").html(temp);
 				$("#thumb").html(thumb);
 				$("#loc").html(loc);
