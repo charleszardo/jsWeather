@@ -90,14 +90,11 @@ $(document).ready(function() {
 		  }, function(error) { 
 				loadWeather('Boston, MA', '');
 		});
-
-
-		
 	} else {
 		loadWeather('Boston, MA', '');
 	}
 	
-	$("#switch").click(function() {
+	$("body").on('click', "#switch", function() {
 		if (!fTemp){
 			// temperature hasn't loaded yet so disable swithing
 			return;
@@ -109,6 +106,6 @@ $(document).ready(function() {
 		}
 		fahrenheit = !fahrenheit;
 		$("#temp").html(temp);
-	})
+	});
 });
 
