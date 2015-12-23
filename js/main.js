@@ -1,10 +1,35 @@
-var fTemp;
-var cTemp;
-var fahrenheit = true;
-var coords = [null, null]
-
 $(document).ready(function() {
+	var fTemp;
+	var cTemp;
+	var fahrenheit = true;
+	var coords = [null, null];
 	
+	function loadWeather(location, woeid) {
+	  $.simpleWeather({
+	    location: location,
+	    woeid: woeid,
+	    unit: 'f',
+	    success: function(weather) {
+				fTemp = weather.temp;
+				cTemp = weather.alt.temp;
+			
+	      temp = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+	      thumb = '<img src="'+weather.thumbnail+'">';
+				loc = weather.city+', '+weather.region;
+	      conditions = weather.currently;
+	      wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
+      
+				$("#temp").html(temp);
+				$("#thumb").html(thumb);
+				$("#loc").html(loc);
+				$("#weather").html(conditions);
+				$('#wind').html(wind);
+	    },
+	    error: function(error) {
+	      $("#weather").html('<p>'+error+'</p>');
+	    }
+	  });
+	}
 	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -28,7 +53,7 @@ $(document).ready(function() {
 					dataType: "jsonp",
 					url: testUrl,
 					success: function(data) {
-						console.log(data);
+						console.log(data.photos);
 					}
 				})
 				
@@ -59,30 +84,3 @@ $(document).ready(function() {
 	
 });
 
-function loadWeather(location, woeid) {
-
-  $.simpleWeather({
-    location: location,
-    woeid: woeid,
-    unit: 'f',
-    success: function(weather) {
-			fTemp = weather.temp;
-			cTemp = weather.alt.temp;
-			
-      temp = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      thumb = '<img src="'+weather.thumbnail+'">';
-			loc = weather.city+', '+weather.region;
-      conditions = weather.currently;
-      wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
-      
-			$("#temp").html(temp);
-			$("#thumb").html(thumb);
-			$("#loc").html(loc);
-			$("#weather").html(conditions);
-			$('#wind').html(wind);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
-}
