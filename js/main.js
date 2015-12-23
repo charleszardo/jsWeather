@@ -1,15 +1,43 @@
 var fTemp;
 var cTemp;
 var fahrenheit = true;
+var coords = [null, null]
 
 $(document).ready(function() {
 	
+	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
+			coords = [position.coords.longitude, position.coords.latitude];
 		    loadWeather(position.coords.latitude+','+position.coords.longitude);
+				
+				var diff = 0.002,
+						minx = coords[0] - diff,
+						miny = coords[1] - diff,
+						maxx = coords[0] + diff,
+						maxy = coords[1] + diff
+						testUrl = "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20" +
+											"&minx=" + minx +
+											"&miny=" + miny +
+											"&maxx=" + maxx +
+											"&maxy=" + maxy +
+											"&size=medium&mapfilter=true";
+											
+				$.ajax({
+					type: "GET",
+					dataType: "jsonp",
+					url: testUrl,
+					success: function(data) {
+						console.log(data);
+					}
+				})
+				
 		  }, function(error) { 
 				loadWeather('Boston, MA', '');
 		});
+
+
+		
 	} else {
 		loadWeather('Boston, MA', '');
 	}
@@ -27,9 +55,12 @@ $(document).ready(function() {
 		fahrenheit = !fahrenheit;
 		$("#temp").html(temp);
 	})
+	
+	
 });
 
 function loadWeather(location, woeid) {
+
   $.simpleWeather({
     location: location,
     woeid: woeid,
