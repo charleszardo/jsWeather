@@ -27,9 +27,7 @@ $(document).ready(function() {
 	    woeid: woeid,
 	    unit: 'f',
 			success: simpleWeatherSuccess,
-	    error: function(error) {
-	      $("#weather").html('<p>'+error+'</p>');
-	    }
+	    error: simpleWeatherError
 	  });
 	}
 	
@@ -49,6 +47,10 @@ $(document).ready(function() {
 		$("#loc").html(loc);
 		$("#weather").html(conditions);
 		$('#wind').html(wind);
+	}
+	
+	function simpleWeatherError(error) {
+		$("#weather").html('<p>'+error+'</p>');
 	}
 	
 	function setBackground(photos) {
@@ -98,7 +100,7 @@ $(document).ready(function() {
 	
 	$("body").on('click', "#switch", function() {
 		if (!fTemp){
-			// temperature hasn't loaded yet so disable swithing
+			// temperature hasn't loaded yet so disable switching
 			return;
 		}
 		if (fahrenheit) {
