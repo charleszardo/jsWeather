@@ -58,10 +58,13 @@ $(document).ready(function() {
 	}
 	
 	function setBackground(photos) {
+		var photo;
+		
 		if (!photos.length) {
 			photos = ["http://static.pexels.com/wp-content/uploads/2014/06/clouds-colorful-colourful-1029.jpg"];
 		}
-		var photo = photos[Math.floor(Math.random()*photos.length)];
+		
+		photo = photos[Math.floor(Math.random()*photos.length)];
 		$('body').css('background-image', 'url(' + photo + ')');
 	}
 	
@@ -81,6 +84,16 @@ $(document).ready(function() {
 		return url;
 	}
 	
+	function geolocationSuccess(data) {
+		var photos = [];
+		
+		data.photos.forEach(function(photoObj) {
+			photos.push(photoObj.photo_file_url);
+		});
+		
+		setBackground(photos);
+	}
+	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var coords = [position.coords.longitude, position.coords.latitude],
@@ -91,13 +104,7 @@ $(document).ready(function() {
 					type: "GET",
 					dataType: "jsonp",
 					url: url,
-					success: function(data) {
-						var photos = [];
-						data.photos.forEach(function(photoObj) {
-							photos.push(photoObj.photo_file_url);
-						});
-						setBackground(photos);
-					}
+					success: geolocationSuccess
 				})
 				
 		  }, function(error) { 
