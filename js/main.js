@@ -41,16 +41,20 @@ $(document).ready(function() {
 		fTemp = weather.temp;
 		cTemp = weather.alt.temp;
 		
-		createBody()
+		createBody();
+		fillBody(temp, thumb, loc, conditions, wind);
+	}
+	
+	function simpleWeatherError(error) {
+		$("#weather").html('<p>'+error+'</p>');
+	}
+	
+	function fillBody(temp, thumb, loc, conditions, wind) {
 		$("#temp").html(temp);
 		$("#thumb").html(thumb);
 		$("#loc").html(loc);
 		$("#weather").html(conditions);
 		$('#wind').html(wind);
-	}
-	
-	function simpleWeatherError(error) {
-		$("#weather").html('<p>'+error+'</p>');
 	}
 	
 	function setBackground(photos) {
