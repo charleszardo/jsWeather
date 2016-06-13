@@ -115,17 +115,16 @@ $(document).ready(function() {
 	}
 	
 	$("body").on('click', "#switch", function() {
-		if (!fTemp){
-			// temperature hasn't loaded yet so disable switching
-			return;
+		if (fTemp){
+			// otherwise temperature hasn't loaded yet so disable switching
+			if (fahrenheit) {
+				temp = '<h2>'+cTemp+'&deg;C</h2>';
+			} else {
+				temp = '<h2>'+fTemp+'&deg;F</h2>';
+			}
+			fahrenheit = !fahrenheit;
+			$("#temp").html(temp);
 		}
-		if (fahrenheit) {
-			temp = '<h2>'+cTemp+'&deg;C</h2>';
-		} else {
-			temp = '<h2>'+fTemp+'&deg;F</h2>';
-		}
-		fahrenheit = !fahrenheit;
-		$("#temp").html(temp);
 	});
 });
 
