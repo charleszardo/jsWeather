@@ -65,27 +65,32 @@ $(document).ready(function() {
 		$('body').css('background-image', 'url(' + photo + ')');
 	}
 	
+	function buildPhotoUrl(coords) {
+		var diff = 0.01,
+				minx = coords[0] - diff,
+				miny = coords[1] - diff,
+				maxx = coords[0] + diff,
+				maxy = coords[1] + diff
+				 url = "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20" +
+									"&minx=" + minx +
+									"&miny=" + miny +
+									"&maxx=" + maxx +
+									"&maxy=" + maxy +
+									"&size=original&mapfilter=true";
+									
+		return url;
+	}
+	
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			coords = [position.coords.longitude, position.coords.latitude];
-		    loadWeather(position.coords.latitude+','+position.coords.longitude);
-				
-				var diff = 0.01,
-						minx = coords[0] - diff,
-						miny = coords[1] - diff,
-						maxx = coords[0] + diff,
-						maxy = coords[1] + diff
-						testUrl = "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20" +
-											"&minx=" + minx +
-											"&miny=" + miny +
-											"&maxx=" + maxx +
-											"&maxy=" + maxy +
-											"&size=original&mapfilter=true";
+			var coords = [position.coords.longitude, position.coords.latitude],
+						 url = buildPhotoUrl(coords);
+		  loadWeather(position.coords.latitude+','+position.coords.longitude);	
 											
 				$.ajax({
 					type: "GET",
 					dataType: "jsonp",
-					url: testUrl,
+					url: url,
 					success: function(data) {
 						var photos = [];
 						data.photos.forEach(function(photoObj) {
