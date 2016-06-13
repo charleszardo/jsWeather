@@ -26,27 +26,29 @@ $(document).ready(function() {
 	    location: location,
 	    woeid: woeid,
 	    unit: 'f',
-	    success: function(weather) {
-				fTemp = weather.temp;
-				cTemp = weather.alt.temp;
-			
-	      temp = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-	      thumb = '<img src="'+weather.thumbnail+'">';
-				loc = weather.city+', '+weather.region;
-	      conditions = weather.currently;
-	      wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
-      	
-				createBody()
-				$("#temp").html(temp);
-				$("#thumb").html(thumb);
-				$("#loc").html(loc);
-				$("#weather").html(conditions);
-				$('#wind').html(wind);
-	    },
+			success: simpleWeatherSuccess,
 	    error: function(error) {
 	      $("#weather").html('<p>'+error+'</p>');
 	    }
 	  });
+	}
+	
+	function simpleWeatherSuccess(weather) {
+		var temp = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>',
+				thumb = '<img src="'+weather.thumbnail+'">',
+				loc = weather.city+', '+weather.region,
+				conditions = weather.currently,
+				wind = weather.wind.direction + " " + weather.wind.speed + " " + weather.units.speed;
+		
+		fTemp = weather.temp;
+		cTemp = weather.alt.temp;
+		
+		createBody()
+		$("#temp").html(temp);
+		$("#thumb").html(thumb);
+		$("#loc").html(loc);
+		$("#weather").html(conditions);
+		$('#wind').html(wind);
 	}
 	
 	function setBackground(photos) {
