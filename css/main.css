@@ -54,6 +54,7 @@ body {
   border-radius: 0.3em;
   box-shadow: .2em .2em .2em #444;
   opacity: 0.7;
+	padding: 20px;
 }
 
 #thumb img {
@@ -61,5 +62,10 @@ body {
 }
 
 .weather-container {
-	
+	background-color: rgba(253,247,239, 0.8);
+	border-radius: 10px;
+	border: 1px solid #fcfbe3;
+	opacity: 1;
+	margin: 0 auto;
+	width: 60%;
 }
