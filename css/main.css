@@ -11,11 +11,8 @@ body {
 #top-row {
   font-size: 1.8em;
   font-weight: bold;
-  padding-bottom: 1%;
   color: #ffffff;
   text-shadow: 0 0 0.2em #333;
-	-webkit-flex-direction: column;
-	flex-direction: column;
 }
 
 #switch {
@@ -24,7 +21,7 @@ body {
 	font-size: 0.7em;
 }
 
-#switch-row, #top-row {
+#switch-row {
 	-webkit-flex-direction: column;
 	flex-direction: column;
 }
@@ -57,6 +54,10 @@ body {
   border-radius: 0.3em;
   box-shadow: .2em .2em .2em #444;
   opacity: 0.7;
+}
+
+#thumb img {
+	margin-top: 45px;
 }
 
 .weather-container {
