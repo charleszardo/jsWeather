@@ -69,3 +69,10 @@ body {
 	margin: 0 auto;
 	width: 60%;
 }
+
+@media all and (max-width: 700px) {
+  #bottom-row {
+		-webkit-flex-direction: column;
+		flex-direction: column;
+  }
+}
