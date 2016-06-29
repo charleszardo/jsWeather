@@ -14,6 +14,8 @@ body {
   padding-bottom: 1%;
   color: #ffffff;
   text-shadow: 0 0 0.2em #333;
+	-webkit-flex-direction: column;
+	flex-direction: column;
 }
 
 #switch {
@@ -22,8 +24,9 @@ body {
 	font-size: 0.7em;
 }
 
-#switch-row {
-	margin: -40px 0 20px 0;
+#switch-row, #top-row {
+	-webkit-flex-direction: column;
+	flex-direction: column;
 }
 
 #loading {
@@ -33,8 +36,12 @@ body {
 }
 
 .row {
-	display: block;
-	margin: auto 0;
+	margin: 0 auto;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	width: 50%;
 }
 
 .item {
@@ -45,10 +52,13 @@ body {
   border: 2px solid #ffffff;
   color: #7F3320;
   padding: 2% 1% 2% 1%;
-  margin: 0 0.7% 0.7% auto;
+  margin: 20px;
   background-color: #ffffff;
   border-radius: 0.3em;
   box-shadow: .2em .2em .2em #444;
   opacity: 0.7;
-	width: 10%;
+}
+
+.weather-container {
+	
 }

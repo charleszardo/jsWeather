@@ -18,7 +18,7 @@ $(document).ready(function() {
 									'</div>';
 		
 		$("#loading").remove();
-		$("body").append(bodyString);
+		$(".weather-container").append(bodyString);
 	}
 
 	function loadWeather(location, woeid) {
